@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String     @id @default(uuid())
+  email     String     @unique
+  user_name String
+  password  String
+  Drone     Drone[]
+  Site      Site[]
+  Category  Category[]
+}
+
+model Drone {
+  drone_id   String    @id @default(uuid())
+  drone_type String
+  make_name  String
+  name       String
+  updated_at DateTime  @updatedAt
+  created_at DateTime  @default(now())
+  deleted_by String[]  @default([])
+  deleted_on DateTime?
+
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  Site   Site?   @relation(fields: [siteId], references: [id])
+  siteId String?
+
+  Category Category[]
+}
+
+model Site {
+  id        String    @id @default(uuid())
+  site_name String
+  position  Position?
+  Drone     Drone[]
+
+  Mission Mission[]
+  User    User?     @relation(fields: [userId], references: [id])
+  userId  String?
+}
+
+model Position {
+  id        String @id @default(uuid())
+  latitude  String
+  longitude String
+  site      Site   @relation(fields: [siteId], references: [id])
+  siteId    String @unique
+}
+
+model Mission {
+  id    String @id @default(uuid())
+  alt   Int
+  speed Int
+  name  String
+
+  waypoints Waypoint[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  Site   Site?   @relation(fields: [siteId], references: [id])
+  siteId String?
+
+  Category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId String?
+}
+
+model Waypoint {
+  id        String  @id @default(uuid())
+  alt       Int
+  lat       Float
+  lng       Float
+  mission   Mission @relation(fields: [missionId], references: [id], onDelete: Cascade)
+  missionId String
+}
+
+model Category {
+  id       String @id @default(uuid())
+  name     String
+  color    String
+  tag_name String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  Mission Mission[]
+  Drone   Drone[]
+}
