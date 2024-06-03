@@ -40,7 +40,6 @@ export class AuthService {
     try {
       const hashedPassword = await bcrypt.hash(signUpData.password, 10);
       signUpData.password = hashedPassword;
-      console.log('signUpData :>> ', signUpData);
       const user = await this.userService.create(signUpData);
       return { success: true, user: user };
     } catch (error) {
