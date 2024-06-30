@@ -1,7 +1,7 @@
-# Backend Developer Assignment - FlytBase
+# Drone Automation Backend Project
 
 ## Overview
-This repository contains the completed assignment for the Backend Developer role at FlytBase. The project implements backend CRUD services to manage users, drones, missions, and sites, as well as additional features outlined in the assignment document.
+This repository contains a backend project that implements CRUD services to manage users, drones, missions, and sites, as well as additional features for a drone automation software.
 
 ## Project Structure
 - **src/**: Contains the source code for the application.
@@ -25,7 +25,7 @@ This repository contains the completed assignment for the Backend Developer role
 - **Docker** (optional, if using containerization)
 
 ## Note on Database Choice
-Although the assignment specified the use of MongoDB, I chose to implement the backend services using PostgreSQL with Prisma ORM. Here are the reasons for this choice:
+Although the initial specification suggested the use of MongoDB, I chose to implement the backend services using PostgreSQL with Prisma ORM for the following reasons:
 
 1. **Relational Data Modeling**: The problem statement involved managing complex relationships between users, drones, missions, and sites. PostgreSQL, being a relational database, is well-suited for handling such data relationships efficiently and with strong data integrity through foreign keys and constraints.
 
@@ -111,5 +111,37 @@ The Postman collection for testing the APIs is available at the following link:
 5. **Explore the Endpoints**:
 - You can create, read, update, and delete resources using the provided endpoints in their respective folders.
 
+## Contribution
+Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
+
+1. **Fork the Repository**: Click the "Fork" button at the top-right corner of this repository to create a copy of it in your GitHub account.
+
+2. **Clone the Forked Repository**:
+    ```bash
+    git clone https://github.com/<your-username>/AbhishekNimbalkar_DroneAutomation_Project.git
+    cd AbhishekNimbalkar_DroneAutomation_Project
+    ```
+
+3. **Create a New Branch**:
+    ```bash
+    git checkout -b feature-name
+    ```
+
+4. **Make Your Changes**: Implement your changes in the codebase.
+
+5. **Commit Your Changes**:
+    ```bash
+    git add .
+    git commit -m "Description of your changes"
+    ```
+
+6. **Push to Your Branch**:
+    ```bash
+    git push origin feature-name
+    ```
+
+7. **Create a Pull Request**: Go to the original repository on GitHub and click the "New Pull Request" button. Select your branch from the forked repository and compare it with the main branch of the original repository. Provide a clear description of your changes and submit the pull request.
+
+8. **Code Review**: Your pull request will be reviewed, and feedback may be provided. Make any necessary changes and update the pull request as needed.
 
 
